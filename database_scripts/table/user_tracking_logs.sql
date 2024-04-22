@@ -39,12 +39,12 @@ END $$;
 
 --create fk publisher_id
 ALTER TABLE korzinka_db.user_tracking_logs DROP CONSTRAINT IF EXISTS fk_user_tracking_logs_publisher_id;
-ALTER TABLE korzinka_db.user_tracking_logs ADD CONSTRAINT fk_user_tracking_logs_publisher_id FOREIGN KEY(publisher_id) REFERENCES korzinka_db.c_publisher(id);
+ALTER TABLE korzinka_db.user_tracking_logs ADD CONSTRAINT fk_user_tracking_logs_publisher_id FOREIGN KEY(publisher_id) REFERENCES korzinka_db.c_publisher(publisher_id);
 CREATE INDEX IF NOT EXISTS idx_user_tracking_logs_publisher_id ON korzinka_db.user_tracking_logs USING btree (publisher_id);
 
 --create fk tracking_id
 ALTER TABLE korzinka_db.user_tracking_logs DROP CONSTRAINT IF EXISTS fk_user_tracking_logs_tracking_id;
-ALTER TABLE korzinka_db.user_tracking_logs ADD CONSTRAINT fk_user_tracking_logs_tracking_id FOREIGN KEY(tracking_id) REFERENCES korzinka_db.c_track(id);
+ALTER TABLE korzinka_db.user_tracking_logs ADD CONSTRAINT fk_user_tracking_logs_tracking_id FOREIGN KEY(tracking_id) REFERENCES korzinka_db.c_track(tracking_id);
 CREATE INDEX IF NOT EXISTS idx_user_tracking_logs_tracking_id ON korzinka_db.user_tracking_logs USING btree (tracking_id);
 
 --create fk os_id

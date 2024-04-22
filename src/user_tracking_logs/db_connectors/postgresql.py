@@ -1,6 +1,7 @@
 from sqlalchemy import URL, create_engine, text
 from sqlalchemy.orm import sessionmaker
 
+
 class Postgres:
     def connector(self, database, user, password, host, port, logger):
         try:
@@ -17,13 +18,12 @@ class Postgres:
             # create session
             engine = create_engine(url_object)
             Session = sessionmaker(engine)
-            connection = engine.connect()
             # check connection to db
             with Session() as session:
                 result = session.execute(text('SELECT version()')).fetchall()
                 logger.info(f'successfully connected to database: {result[0]}')
 
-            return Session, connection
+            return Session, engine
 
         except Exception as e:
             logger.error(f'failed to connect to database: {e}')
